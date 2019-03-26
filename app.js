@@ -9,11 +9,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static('public'));
 
+var mongo = require('mongodb');
+
+
 // Variables
 app.set('port', 8081);
+app.set('db', 'mongodb://admin:sdi@tiendamusica-shard-00-00-ri6vu.mongodb.net:27017,tiendamusica-shard-00-01-ri6vu.mongodb.net:27017,tiendamusica-shard-00-02-ri6vu.mongodb.net:27017/test?ssl=true&replicaSet=tiendamusica-shard-0&authSource=admin&retryWrites=true');
 
-require("./routes/rusuarios")(app, swig);
-require("./routes/rcanciones.js")(app, swig);
+require("./routes/rusuarios")(app, swig, mongo);
+require("./routes/rcanciones.js")(app, swig, mongo);
 
 // lanzarel servidor
 app.listen(app.get('port'), function() {
