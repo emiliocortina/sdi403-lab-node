@@ -2,6 +2,9 @@
 var express = require('express');
 var app = express();
 
+var fileUpload = require('express-fileupload');
+app.use(fileUpload());
+
 var swig = require('swig');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
