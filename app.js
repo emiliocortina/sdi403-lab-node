@@ -91,6 +91,10 @@ gestorBD.init(app, mongo);
 require("./routes/rusuarios")(app, swig, gestorBD);
 require("./routes/rcanciones.js")(app, swig, gestorBD);
 
+app.get('/', function (req, res) {
+    res.redirect('/tienda');
+})
+
 // lanzarel servidor
 app.listen(app.get('port'), function () {
     console.log("Servidor activo");

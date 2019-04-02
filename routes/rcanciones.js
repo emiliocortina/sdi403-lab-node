@@ -53,7 +53,8 @@ module.exports = function (app, swig, gestorBD) {
                                     if (err) {
                                         res.send("Error al subir el audio");
                                     } else {
-                                        res.redirect("/tienda");
+                                        res.redirect("/publicaciones");
+
                                     }
                                 });
                             }
@@ -162,7 +163,7 @@ module.exports = function (app, swig, gestorBD) {
                     if( result == null){
                         res.send("Error en la modificación");
                     } else {
-                        res.send("Modificado");
+                        res.redirect("/publicaciones");
                     }
                 });
             }
