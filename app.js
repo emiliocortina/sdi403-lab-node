@@ -5,13 +5,6 @@ var app = express();
 var fs = require('fs');
 var https = require('https');
 
-https.createServer({
-    key: fs.readFileSync('certificates/alice.key'),
-    cert: fs.readFileSync('certificates/alice.crt')
-}, app).listen(app.get('port'), function() {
-    console.log("Servidor activo");
-});
-
 
 var expressSession = require('express-session');
 app.use(expressSession({
@@ -112,8 +105,10 @@ app.set('crypto', crypto);
 var gestorBD = require("./modules/gestorBD.js");
 gestorBD.init(app, mongo);
 
+//Rutas/controladores por lógica
 require("./routes/rusuarios")(app, swig, gestorBD);
 require("./routes/rcanciones.js")(app, swig, gestorBD);
+require("./routes/rapicanciones.js")(app, gestorBD);
 
 app.get('/', function (req, res) {
     res.redirect('/tienda');
